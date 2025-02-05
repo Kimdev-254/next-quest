@@ -2,7 +2,6 @@ import Link from "next/link"
 import "../app/globals.css"
 
 import { Inter } from "next/font/google"
-import { link } from "fs"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -11,27 +10,30 @@ export const metadata = {
   description: "A simple Next.js app with a navbar",
 }
 
-const links = [
-  {href: "/", label: "Home"},
-  {href: "/about", label: "Docs"},
-  {href: "/contact", label:"Contact"}
+type NavLink = {
+  href: string;
+  label: string;
+}
+
+const links: NavLink[] = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "Docs" },
+  { href: "/contact", label: "Contact" }
 ]
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
-    <header>
-      <nav>
-        <ul className="flex items-center">
-          {links.map(link => {
-            return (
-              <li key={link.href}>
-                <Link href={link.href}>{link.label}</Link>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
-    </header>
+    <nav className="bg-gray-800 p-4">
+      <ul className="flex space-x-4">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link href={link.href}>
+              <a className="text-white hover:text-gray-400">{link.label}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 
