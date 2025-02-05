@@ -22,10 +22,12 @@ const Navbar = () => {
     <header>
       <nav>
         <ul className="flex items-center">
-          {links.map(link =>{
-            <li key={link.href}>
-              <Link href={link.href}>{link.label}</Link>
-            </li>
+          {links.map(link => {
+            return (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            )
           })}
         </ul>
       </nav>
